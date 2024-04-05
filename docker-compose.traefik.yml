@@ -1,0 +1,14 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+
+services:
+  app:
+    networks:
+        - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.boilerplate.entrypoints=web"
+      - "traefik.http.routers.boilerplate.rule=Host(`${APP_HOST}`)"
