@@ -10,5 +10,5 @@ services:
         - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.boilerplate.entrypoints=web"
-      - "traefik.http.routers.boilerplate.rule=Host(`${APP_HOST}`)"
+      - "traefik.http.routers.journal.entrypoints=web"
+      - "traefik.http.routers.journal.rule=Host(`${APP_HOST}`)"

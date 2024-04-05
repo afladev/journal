@@ -1,22 +1,3 @@
-## About Boilerplate
+## Le Journal
 
-Build with Laravel, TailwindCSS & VueJS
-
-### How to run app ?
-
-```shell
-make up
-make install
-```
-
-### How to build asset on dev environment ?
-
-```shell
-make run-dev
-```
-
-### How to run tests ?
-
-```shell
-make test
-```
+[Modèle de données](https://dbdiagram.io/d/Journal-66100c2403593b6b614a3afb)
