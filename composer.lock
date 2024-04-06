@@ -4,8 +4,108 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8da8cd97edc864c10a472f2ea61135a",
+    "content-hash": "72135ff58ad0597d59826d6bd5dd4d36",
     "packages": [
+        {
+            "name": "bluestone/collection",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bluestonelab/collection.git",
+                "reference": "18e7d3204506686921a3ffb3960873046e0aa576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bluestonelab/collection/zipball/18e7d3204506686921a3ffb3960873046e0aa576",
+                "reference": "18e7d3204506686921a3ffb3960873046e0aa576",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "marcocesarato/php-conventional-changelog": "^1.16",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bluestone\\Collection\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William",
+                    "email": "work@suppo.fr"
+                }
+            ],
+            "description": "Using array as object.",
+            "keywords": [
+                "array",
+                "collection"
+            ],
+            "support": {
+                "issues": "https://github.com/bluestonelab/collection/issues",
+                "source": "https://github.com/bluestonelab/collection/tree/v0.1.1"
+            },
+            "time": "2022-12-07T07:50:50+00:00"
+        },
+        {
+            "name": "bluestone/dto",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bluestonelab/dto.git",
+                "reference": "76ce57f4192180302fc0bcef2319df8102086833"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bluestonelab/dto/zipball/76ce57f4192180302fc0bcef2319df8102086833",
+                "reference": "76ce57f4192180302fc0bcef2319df8102086833",
+                "shasum": ""
+            },
+            "require": {
+                "bluestone/collection": "^0.1.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "marcocesarato/php-conventional-changelog": "^1.15",
+                "phpunit/phpunit": "^9.5.10",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bluestone\\DataTransferObject\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William",
+                    "email": "work@suppo.fr"
+                }
+            ],
+            "description": "Data transfer objects",
+            "keywords": [
+                "data-transfer-object",
+                "dto",
+                "entity"
+            ],
+            "support": {
+                "issues": "https://github.com/bluestonelab/dto/issues",
+                "source": "https://github.com/bluestonelab/dto/tree/v1.1.1"
+            },
+            "time": "2022-12-07T13:35:23+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
@@ -7939,5 +8039,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
