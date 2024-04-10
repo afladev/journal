@@ -8,6 +8,7 @@ use App\Service\Rss\PostDto;
 use App\Service\Rss\Reader;
 use DateTime;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -19,11 +20,13 @@ class FetchPostsUsingFeedTest extends TestCase
     #[Test]
     public function can_create_new_post_using_feed()
     {
-        $feed = Feed::factory()->create();
+        $expectedFeed = Feed::factory()->create();
 
-        $this->partialMock(Reader::class, function (MockInterface $mock) use ($feed) {
+        $this->mock(Reader::class, function (MockInterface $mock) use ($expectedFeed) {
             $mock->shouldReceive('fetch')
-                ->with($feed)
+                ->with(Mockery::on(function ($feed) use ($expectedFeed) {
+                    return $feed->id === $expectedFeed->id;
+                }))
                 ->andReturn([
                       new PostDto(
                         title: "Ceci est un test",
@@ -48,7 +51,7 @@ class FetchPostsUsingFeedTest extends TestCase
             'thumbnail' => "https://example.org/image.jpg",
             'description' => "qsdqs",
             'published_at' => new DateTime(),
-            'feed_id' => $feed->id,
+            'feed_id' => $expectedFeed->id,
         ]);
     }
 }
