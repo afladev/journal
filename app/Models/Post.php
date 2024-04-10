@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feed extends Model
+class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'url',
+        'title', 'url', 'thumbnail', 'author', 'description', 'published_at',
     ];
 
-    public function posts()
+    public function feed()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Feed::class);
     }
 }
