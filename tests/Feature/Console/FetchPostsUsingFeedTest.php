@@ -18,7 +18,7 @@ class FetchPostsUsingFeedTest extends TestCase
     use RefreshDatabase;
 
     #[Test]
-    public function can_create_new_post_using_feed()
+    public function can_create_new_posts_using_feed()
     {
         $expectedFeed = Feed::factory()->create();
 
@@ -28,28 +28,52 @@ class FetchPostsUsingFeedTest extends TestCase
                     return $feed->id === $expectedFeed->id;
                 }))
                 ->andReturn([
-                      new PostDto(
+                    new PostDto(
                         title: "Ceci est un test",
                         authorName: "John Doe",
-                        url: "https://laravel-france.com",
+                        url: "https://laravel-france.com/first-news",
                         thumbnail: "https://example.org/image.jpg",
-                        description: "qsdqs",
+                        description: "L'ultime description : qsdqs",
                         publishedAt: new DateTime(),
-                    )
+                    ),
+                    new PostDto(
+                        title: "Ceci est un test",
+                        authorName: "John Doe",
+                        url: "https://laravel-france.com/first-news",
+                        thumbnail: "https://example.org/image.jpg",
+                        description: "L'ultime description : qsdqs",
+                        publishedAt: new DateTime(),
+                    ),
+                    new PostDto(
+                        title: "Ceci est un test",
+                        authorName: "John Doe",
+                        url: "https://laravel-france.com/super-news",
+                        publishedAt: new DateTime(),
+                    ),
                 ]);
         });
 
         $this->artisan('feed:fetch-posts')
             ->assertSuccessful();
 
-        $this->assertDatabaseCount(Post::class, 1);
+        $this->assertDatabaseCount(Post::class, 2);
 
         $this->assertDatabaseHas(Post::class, [
             'title' => "Ceci est un test",
             'author' => "John Doe",
-            'url' => "https://laravel-france.com",
+            'url' => "https://laravel-france.com/first-news",
             'thumbnail' => "https://example.org/image.jpg",
-            'description' => "qsdqs",
+            'description' => "L'ultime description : qsdqs",
+            'published_at' => new DateTime(),
+            'feed_id' => $expectedFeed->id,
+        ]);
+
+        $this->assertDatabaseHas(Post::class, [
+            'title' => "Ceci est un test",
+            'author' => "John Doe",
+            'url' => "https://laravel-france.com/super-news",
+            'thumbnail' => null,
+            'description' => null,
             'published_at' => new DateTime(),
             'feed_id' => $expectedFeed->id,
         ]);
