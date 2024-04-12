@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Feed;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +18,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('url');
             $table->string('author');
-            $table->string('thumbnail');
-            $table->text('description');
+            $table->string('thumbnail')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('published_at');
-            $table->foreignIdFor(\App\Models\Feed::class)
+            $table->foreignIdFor(Feed::class)
                 ->nullable()
                 ->constrained()
                 ->nullOnDelete()

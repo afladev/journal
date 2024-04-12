@@ -3,6 +3,7 @@
 namespace App\Service\Rss;
 
 use App\Models\Feed;
+use FeedIo\Feed\Item;
 use FeedIo\FeedIo;
 
 class Reader
@@ -22,26 +23,27 @@ class Reader
         $posts = [];
 
         foreach($result->getFeed() as $item) {
-            $thumbnail = null;
-            $description = null;
-
-            foreach ($item->getMedias() as $media) {
-                if ($media->getThumbnail()) {
-                    $thumbnail = $media->getThumbnail();
-                    $description = $media->getDescription();
-                }
-            }
-
             $posts[] = new PostDto(
                 title: $item->getTitle(),
-                authorName: $result->getFeed()->getTitle(),
+                authorName: $feed->title,
                 url: $item->getLink(),
-                thumbnail: $thumbnail,
-                description: $item->getContent() ?? $description,
+                thumbnail: $this->getThumbnail($item),
+                description: $item->getContent(),
                 publishedAt: $item->getLastModified(),
             );
         }
 
         return $posts;
+    }
+
+    protected function getThumbnail(Item $item): ?string
+    {
+        foreach ($item->getMedias() as $media) {
+            if ($media->getThumbnail()) {
+                return $media->getThumbnail();
+            }
+        }
+
+        return null;
     }
 }
